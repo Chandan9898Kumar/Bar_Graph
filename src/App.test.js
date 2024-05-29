@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const texts = ["Quarterly Rating", "Rating High", "Rating Low"];
+describe("App component Testing", () => {
+  test("Check Quarterly Rating test", () => {
+    render(<App />);
+    texts.forEach((item) => {
+      const linkElement = screen.getByText(item);
+      expect(linkElement).toBeInTheDocument();
+    });
+  });
 });
