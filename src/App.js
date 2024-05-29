@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import "./style.scss";
 import constant from "./Constants/data";
 import Button from "./Common/Button/Button";
@@ -6,8 +6,8 @@ import ToolTip from "./Common/ToolTip/ToolTip";
 export default function App() {
   const [list, setList] = useState(constant.ratingData);
 
-  const generateList = () => {
-    const sortedItem = [...list];
+  const generateList = useCallback(() => {
+    const sortedItem = [...constant.ratingData];
     const Length = sortedItem.length - 1;
 
     for (let i = Length; i > 0; i--) {
@@ -16,7 +16,7 @@ export default function App() {
     }
 
     setList(sortedItem);
-  };
+  }, []);
 
   const numberOfRating = useMemo(() => {
     let sortedList = [...list];
@@ -40,6 +40,7 @@ export default function App() {
         </thead>
         <tbody>
           {list?.map((item, index) => {
+            let isTrue = index === list.length - 1 || index === list.length - 2;
             return (
               <ToolTip
                 text={`${item} people rated ${getRating(index)}`}
@@ -54,7 +55,7 @@ export default function App() {
                 >
                   <th>{getRating(index)}</th>
                   <td
-                    className={item < 30 ? "paid bar" : "sent bar"}
+                    className={isTrue ? "sent bar" : "paid bar"}
                     style={{ height: `${item * 2}%` }}
                   >
                     {item}
