@@ -1,0 +1,57 @@
+import React, { memo } from "react";
+import PropTypes from "prop-types";
+const Button = ({
+  size,
+  variant,
+  type,
+  onClick,
+  isDisabled = false,
+  children,
+  ...props
+}) => {
+  const buttonStyle = {
+    border: "none",
+    borderRadius: "4px",
+    fontSize: "8px",
+    color: "#fff",
+    backgroundColor: "#54a0ff", // Blue Color
+    cursor: "pointer",
+  };
+
+  if (size === "lg") {
+    buttonStyle.height = "40px";
+    buttonStyle.fontSize = "18px";
+  } else if (size === "sm") {
+    buttonStyle.height = "16px";
+    buttonStyle.fontSize = "10px";
+  }
+
+  if (variant === "warning") buttonStyle.backgroundColor = "#ff0000";
+  if (variant === "success") buttonStyle.backgroundColor = "#2ecc71";
+  if (isDisabled) {
+    buttonStyle.backgroundColor = "grey";
+    buttonStyle.cursor = " no-drop";
+  }
+
+  return (
+    <button
+      disabled={isDisabled}
+      type={type}
+      onClick={onClick}
+      style={buttonStyle}
+    >
+      {children}
+    </button>
+  );
+};
+
+Button.propTypes = {
+  size: PropTypes.string,
+  variant: PropTypes.string,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.any,
+  isDisabled: PropTypes.bool,
+};
+
+export default memo(Button);
