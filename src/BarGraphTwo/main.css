@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: sans-serif;
+    -webkit-font-smoothing: auto;
+    -moz-font-smoothing: auto;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: auto;
+    text-rendering: optimizeLegibility;
+    font-smooth: always;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  
+  }
+  
+  .outer-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin-top: 20%;
+  }
+  
+  .chart-container {
+    column-gap: 5px;
+    height: 150px;
+    width: 75%;
+    padding-left: 5px;
+    margin: 50px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    align-items: flex-end;
+    position: relative;
+  }
+  
+  .label-y {
+    position: absolute;
+    transform: rotate(90deg);
+    top: 75px;
+    left: -60px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .label-x {
+    position: absolute;
+    top: 150px;
+    left: 40%;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .bar {
+    animation: chartoggle 2s ease-in;
+    position: relative;
+  }
+  
+  @keyframes chartoggle {
+    from {
+        height: var(--from-height);
+      }
+    
+      to {
+        height: var(--to-height);
+      }
+  }
+  
+  .button-container{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  
+  .button-container button{
+    padding: 8px;
+    color: white;
+    background-color: black;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .bar-label{
+    position: absolute;
+    top: -40px;
+    font-size: 10px;
+    width: fit-content;
+    color: white;
+    background-color: black;
+    padding: 4px;
+    border-radius: 3px;
+  }
